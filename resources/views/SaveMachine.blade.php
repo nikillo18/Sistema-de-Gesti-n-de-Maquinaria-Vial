@@ -9,16 +9,23 @@
 <body>
  <form action="/save-machine" method="POST">
     @csrf
-    <label for="serial_name">Numero de Serie</label>
-    <input type="text" name="serial_name" id="serial_name">
+    <label for="serial_number">Número de Serie</label>
+    <input type="text" name="serial_number" id="serial_number">
     <br>
-    <label for="type">tipo de maquina</label>
-    <input type="text" name="type" id="type">
+ <label for="type_id">Tipo de Maquina</label>
+<select name="type_id" id="type_id">
+    @foreach($types as $type)
+        <option value="{{ $type->id }}">{{ $type->name }}</option>
+    @endforeach
+</select>
+
     <br>
-    <label for="model">Modelo de la maquina</label>
+
+    <label for="model">Modelo de la máquina</label>
     <input type="text" name="model" id="model">
     <br>
-    <button type="submit">Save</button>
+
+    <button type="submit">Guardar</button>
 </form>
 
 </body>

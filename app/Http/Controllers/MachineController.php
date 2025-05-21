@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Machine;
 use Illuminate\Http\Request;
+use App\Models\Machine_Type;
 
 class MachineController extends Controller
 {
@@ -20,7 +21,11 @@ class MachineController extends Controller
      */
     public function create()
     {
-        
+        {
+    $types = Machine_Type::all();
+    return view('SaveMachine', compact('types'));
+}
+
     }
 
     /**
@@ -28,7 +33,15 @@ class MachineController extends Controller
      */
     public function store(Request $request)
 {
-    dd($request->all());
+    //dd($request->all());
+
+    Machine::create([
+        'serial_number' => $request->serial_number,
+        'type_id' => $request->type_id,
+        'model' => $request->model,
+    ]);
+
+    return redirect()->back()->with('success', 'Máquina registrada exitosamente.');
 }
 
     /**
@@ -62,4 +75,5 @@ class MachineController extends Controller
     {
         //
     }
+    
 }
