@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use Illuminate\Http\Request;
+use App\Models\Work;
+use App\Models\Machine;
 
 class AssignmentController extends Controller
 {
@@ -19,16 +21,32 @@ class AssignmentController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
-    }
+ 
+   {
+    $machines = Machine::all();
+    $works = Work::all();
+
+    return view('saveassignments', compact('machines', 'works'));
+   }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        ($request->all());
+        Assignment::create([
+            'machine_id'=>$request->machine_id,
+            'work_id'=>$request->work_id,
+            'start_date'=>$request->start_date,
+            'end_date'=>$request->end_date,
+            'end_reason'=>$request->end_reason,
+            'kilometers'=>$request->kilometers
+
+        ]);
+        return redirect()->back()->with('success', 'Máquina registrada exitosamente.');
+
     }
 
     /**

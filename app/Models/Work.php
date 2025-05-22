@@ -10,6 +10,7 @@ class Work extends Model
 {
      protected $fillable=[
         'id',
+        'name',
         'address',
         'province_id',
         'start_date',

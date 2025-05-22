@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use Illuminate\Http\Request;
+use App\Models\Province;
 
 class WorkController extends Controller
 {
@@ -20,7 +21,10 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        {
+    $provinces = Province::all();
+    return view('savework', compact('provinces'));
+}
     }
 
     /**
@@ -28,7 +32,18 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    //dd($request->all());
+    work::create([
+        'address' => $request->address,
+        'name'=>$request->name,
+        'province_id' => $request->province_id,
+        'start_date' => $request->start_date,
+        'end_date'=>$request->end_date
+        
+    ]);
+        return redirect()->back()->with('success', 'Máquina registrada exitosamente.');
+
     }
 
     /**
