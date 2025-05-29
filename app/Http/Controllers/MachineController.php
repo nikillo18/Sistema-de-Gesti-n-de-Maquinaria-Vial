@@ -55,25 +55,40 @@ class MachineController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Machine $machine)
+    public function edit($id)
     {
-        //
+        {
+    $machine = Machine::findOrFail($id);
+    return view('machines_edit', compact('machine'));
+}
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Machine $machine)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'serial_number' => 'required|string|max:255',
+        'model' => 'required|string|max:255',
+        'type_id' => 'required|exists:machine__types,id',
+    ]);
 
+    $machine = Machine::findOrFail($id);
+    $machine->update($request->all());
+
+    return redirect()->route('machines.index')->with('success', 'Maquinaria actualizada.');
+}
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Machine $machine)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $machine = Machine::findOrFail($id);
+    $machine->delete();
+
+    return redirect()->route('machines.index')->with('success', 'Maquinaria eliminada.');
+}
     
 }

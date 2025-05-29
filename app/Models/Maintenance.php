@@ -13,4 +13,8 @@ class Maintenance extends Model
         'kilometers_maintainance',
         'machine_id'
     ];
+     public function machine()
+    {
+        return $this->belongsTo(Machine::class);
+    }
 }

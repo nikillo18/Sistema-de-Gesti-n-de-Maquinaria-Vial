@@ -13,7 +13,8 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $works = Work::all();
+        return view('works_index', compact('works'));
     }
 
     /**
@@ -34,7 +35,7 @@ class WorkController extends Controller
     {
         
     //dd($request->all());
-    work::create([
+    Work::create([
         'address' => $request->address,
         'name'=>$request->name,
         'province_id' => $request->province_id,
@@ -57,24 +58,37 @@ class WorkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Work $work)
+    public function edit($id)
     {
-        //
+         $work = Work::findOrFail($id);
+    return view('works_edit', compact('work'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Work $work)
+    public function update(Request $request, Work $work,$id)
     {
-        //
-    }
+        $request->validate([
+        'name' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'province_id' => 'required|exists:province_id,id',
+        ]);
+            $work= Work::findOrFail($id);
+            $work->update($request->all());
+
+    return redirect()->route('works.index')->with('success', 'Obra Actualizada.');
+        }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Work $work)
+    public function destroy($id)
     {
-        //
+        $work=Work::findOrfail($id);
+        $work->delete();
+
+        return redirect()->route('works.index')->with('success', 'Obra Eliminada.');
+
     }
 }

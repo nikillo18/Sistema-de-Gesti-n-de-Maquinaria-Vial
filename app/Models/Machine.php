@@ -19,15 +19,15 @@ class Machine extends Model
     ];
        public function machineType()
 {
-    return $this->belongsTo(Machine_Type::class, 'id_type');
+    return $this->belongsTo(Machine_Type::class, 'type_id');
 }
    public function assignment()
 {
-    return $this->hasMany(Assignment::class,'machine_id','number_serial');
+   return $this->hasMany(Assignment::class);
 }
-   public function maintenance()
+   public function maintenances()
 {
-    return $this->hasMany(Maintenance::class,'machine_id','serial_number');
+    return $this->hasMany(Maintenance::class);
 }
 
 

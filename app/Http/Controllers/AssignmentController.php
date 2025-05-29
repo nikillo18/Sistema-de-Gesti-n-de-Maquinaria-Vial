@@ -35,18 +35,41 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        ($request->all());
-        Assignment::create([
-            'machine_id'=>$request->machine_id,
-            'work_id'=>$request->work_id,
-            'start_date'=>$request->start_date,
-            'end_date'=>$request->end_date,
-            'end_reason'=>$request->end_reason,
-            'kilometers'=>$request->kilometers
+        $request->validate([
+        'machine_id' => 'required|exists:machines,id',
+        'work_id' => 'required|exists:works,id',
+        'start_date' => 'required', 'date',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
+        'end_reason' => 'nullable|string',
+        'kilometers' => 'nullable|integer|min:0',
+    ]);
 
-        ]);
-        return redirect()->back()->with('success', 'Máquina registrada exitosamente.');
+    $machineId = $request->machine_id;
 
+    $ultimaAsignacion = Assignment::where('machine_id', $machineId)
+                            ->latest('start_date')
+                            ->first();
+
+    // ✅ Validar si hay asignación activa
+    if ($ultimaAsignacion && $ultimaAsignacion->end_date === null) {
+        return redirect()->back()->withErrors('La máquina ya está asignada a otra obra.');
+    }
+
+    // ✅ Validar que la anterior tenga km y fin
+    if ($ultimaAsignacion && ($ultimaAsignacion->kilometers === null || $ultimaAsignacion->end_reason === null)) {
+        return redirect()->back()->withErrors('La última asignación de la máquina no tiene kilómetros o motivo de fin cargados.');
+    }
+
+    Assignment::create([
+        'machine_id' => $machineId,
+        'work_id' => $request->work_id,
+        'start_date' => $request->start_date,
+        'end_date' => $request->end_date, // puede ser null
+        'end_reason' => $request->end_reason,
+        'kilometers' => $request->kilometers,
+    ]);
+
+    return redirect()->back()->with('success', 'Asignación creada correctamente.');
     }
 
     /**
@@ -80,4 +103,62 @@ class AssignmentController extends Controller
     {
         //
     }
+    public function actives()
+{
+    $activas = Assignment::with(['machine', 'work'])
+                ->whereNull('end_date')
+                ->get();
+
+    return view('machines_active', compact('activas'));
+}
+public function history($id)
+{
+    $machine = Machine::findOrFail($id);
+    $historial = Assignment::with('work')
+                ->where('machine_id', $id)
+                ->orderBy('start_date', 'asc')
+                ->get();
+
+    return view('machine_history', compact('machine', 'historial'));
+}
+public function finalizeForm()
+{
+    // Trae solo asignaciones activas
+    $asignaciones = Assignment::with('machine', 'work')
+                    ->whereNull('end_date')
+                    ->get();
+
+    return view('finalize_assignment', compact('asignaciones'));
+}
+
+public function finalize(Request $request)
+{
+    $request->validate([
+        'assignment_id' => 'required|exists:assignments,id',
+        'end_date' => 'required|date|before_or_equal:today',
+        'end_reason' => 'required|string|max:255',
+        'kilometers' => 'required|integer|min:0',
+    ]);
+
+    $assignment = Assignment::findOrFail($request->assignment_id);
+
+    if ($assignment->end_date !== null) {
+        return redirect()->back()->withErrors('Esta asignación ya fue finalizada.');
+    }
+
+    $assignment->update([
+        'end_date' => $request->end_date,
+        'end_reason' => $request->end_reason,
+        'kilometers' => $request->kilometers,
+    ]);
+
+    return redirect()->route('assignments.finalizeForm')->with('success', 'Asignación finalizada correctamente.');
+}
+public function listMachines()
+{
+    $machines = Machine::all();
+    return view('machines_index', compact('machines'));
+}
+
+
 }

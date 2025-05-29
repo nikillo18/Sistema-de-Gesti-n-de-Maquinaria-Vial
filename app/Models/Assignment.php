@@ -17,11 +17,12 @@ class Assignment extends Model
      ];
         public function machine()
 {
-    return $this->hasMany(Machine::class,'machine_id','serial_number');
+   return $this->belongsTo(Machine::class); 
 }
+
      public function work()
 {
-    return $this->belongsTo(Work::class,'work_id');
+    return $this->belongsTo(Work::class);
 }
 
 }

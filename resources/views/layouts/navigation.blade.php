@@ -11,12 +11,75 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-            </div>
+<!-- Navigation Links -->
+<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
+
+    {{-- Dropdown Maquinarias --}}
+    <x-dropdown align="left" width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-100 focus:outline-none transition ease-in-out duration-150">
+                Maquinarias
+                <svg class="ms-1 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8l5 5 5-5" />
+                </svg>
+            </button>
+        </x-slot>
+
+        <x-slot name="content">
+            <x-dropdown-link :href="route('machines.create')" :active="request()->routeIs('machines.create')">
+                Nueva Maquinaria
+            </x-dropdown-link>
+            <x-dropdown-link :href="route('assignments.actives')" :active="request()->routeIs('assignments.actives')">
+                Máquinas Activas
+            </x-dropdown-link>
+            <x-dropdown-link :href="route('machines.index')" :active="request()->routeIs('machines.index')">
+               Lista de Maquinas
+            </x-dropdown-link>
+        </x-slot>
+    </x-dropdown>
+
+    {{-- Dropdown Asignaciones --}}
+    <x-dropdown align="left" width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-100 focus:outline-none transition ease-in-out duration-150">
+                Asignaciones
+                <svg class="ms-1 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8l5 5 5-5" />
+                </svg>
+            </button>
+        </x-slot>
+
+        <x-slot name="content">
+            <x-dropdown-link :href="route('assignments.create')" :active="request()->routeIs('assignments.create')">
+                Nueva Asignación
+            </x-dropdown-link>
+            <x-dropdown-link :href="route('assignments.finalizeForm')" :active="request()->routeIs('assignments.finalizeForm')">
+                Finalizar Asignación
+            </x-dropdown-link>
+        </x-slot>
+    </x-dropdown>
+
+    {{-- Obras (sin submenú) --}}
+   <x-dropdown align="left" width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-100 focus:outline-none transition ease-in-out duration-150">
+                Obras
+                <svg class="ms-1 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8l5 5 5-5" />
+                </svg>
+            </button>
+        </x-slot>
+
+        <x-slot name="content">
+            <x-dropdown-link :href="route('works.index')" :active="request()->routeIs('works.index')">
+                Lista de Obras
+            </x-dropdown-link>
+           
+        </x-slot>
+    </x-dropdown>
+
+</div>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
