@@ -1,3 +1,33 @@
+# 🛣️ Sistema de Gestión Vial
+
+Una aplicación web para administrar maquinarias viales, obras, asignaciones, mantenimientos y reportes mensuales por provincia.
+
+---
+
+## 🚀 Funcionalidades
+
+- 🔐 **Autenticación de usuarios** (login y registro).
+- 🚜 **Gestión de maquinarias**: altas, bajas, historial y límites de uso.
+- 🏗️ **Gestión de obras**: CRUD completo y asignación de maquinarias.
+- 🛠️ **Mantenimientos**: creación y seguimiento por máquina.
+- 📄 **Reportes PDF**: resumen mensual de obras por provincia.
+- 📬 **Envío de correos** mediante Mailtrap o SMTP (Gmail).
+
+---
+
+## 🛠️ Tecnologías
+
+- **Backend:** Laravel 10 (PHP 8.1+)
+- **Frontend:** Blade + Tailwind CSS
+- **Base de datos:** MySQL
+- **Autenticación:** Laravel Breeze
+- **PDFs:** DomPDF 
+- **Emails:** SMTP (Gmail o Mailtrap)
+---
+
+## 📦 Instalación
+
+
 1. Descargue el proyecto o clone el repositorio:
 
 ```bash

@@ -53,8 +53,8 @@
             <x-dropdown-link :href="route('assignments.create')" :active="request()->routeIs('assignments.create')">
                 Nueva Asignación
             </x-dropdown-link>
-            <x-dropdown-link :href="route('assignments.finalizeForm')" :active="request()->routeIs('assignments.finalizeForm')">
-                Finalizar Asignación
+            <x-dropdown-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
+                Lista de Asignaciones
             </x-dropdown-link>
         </x-slot>
     </x-dropdown>
@@ -77,6 +77,9 @@
             </x-dropdown-link>
             <x-dropdown-link :href="route('works.index')" :active="request()->routeIs('works.index')">
                 Lista de Obras
+            </x-dropdown-link>
+            <x-dropdown-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
+                Obras en Provincias
             </x-dropdown-link>
             
            

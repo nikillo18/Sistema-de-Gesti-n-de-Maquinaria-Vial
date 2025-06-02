@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Listado de máquinas
-        </h2>
+            Listado asignaciones
     </x-slot>
 
     <div class="py-6">
@@ -26,8 +25,8 @@
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach ($assignments as $assignment)
                                 <tr>
-                                    <td class="px-6 py-4">{{ $assignment->machine_id }}</td>
-                                    <td class="px-6 py-4">{{ $assignment->work_id }}</td>
+                                    <td class="px-6 py-4">{{ $assignment->machine->serial_number }}</td>
+                                    <td class="px-6 py-4">{{ $assignment->work->name }}</td>
                                     <td class="px-6 py-4">{{ $assignment->start_date  }}</td>
                                     <td class="px-6 py-4">{{ $assignment->end_date }}</td>
                                     <td class="px-6 py-4">{{ $assignment->end_reason  }}</td>
@@ -38,7 +37,7 @@
                                             <x-secondary-button>Editar</x-secondary-button>
                                         </a>
 
-                                        <form action="{{ route('assignment.destroy', $assignment->id) }}" method="POST"
+                                        <form action="{{ route('assignments.destroy', $assignment->id) }}" method="POST"
                                               onsubmit="return confirm('¿Estás seguro de eliminar esta asignacion?')">
                                             @csrf
                                             @method('DELETE')
