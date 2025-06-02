@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold">Historial de mantenimientos: {{ $machine->serial_number }}</h2>
+     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Historial de mantenimientos: {{ $machine->serial_number }}</h2>
     </x-slot>
 
     <div class="p-6">
@@ -14,11 +14,11 @@
             </thead>
              <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
 
-                @forelse($machine->maintenances as $m)
+                @forelse($machine->maintenances as $maintenace)
                     <tr>
-                        <td class="px-6 py-4">{{ $m->date }}</td>
-                        <td class="px-6 py-4">{{ $m->description }}</td>
-                        <td class="px-6 py-4">{{ $m->kilometers_maintainance }}</td>
+                        <td class="px-6 py-4">{{ $maintenace->date }}</td>
+                        <td class="px-6 py-4">{{ $maintenace->description }}</td>
+                        <td class="px-6 py-4">{{ $maintenace->kilometers_maintainance }}</td>
                     </tr>
                 @empty
                     <tr>

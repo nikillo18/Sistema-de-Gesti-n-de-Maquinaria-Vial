@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 use App\Models\Machine_Type;
+use App\Models\Assignment;
 
 class MachineController extends Controller
 {
@@ -23,7 +24,7 @@ class MachineController extends Controller
     {
         {
     $types = Machine_Type::all();
-    return view('SaveMachine', compact('types'));
+    return view('machines.Save', compact('types'));
 }
 
     }
@@ -59,7 +60,7 @@ class MachineController extends Controller
     {
         {
     $machine = Machine::findOrFail($id);
-    return view('machines_edit', compact('machine'));
+    return view('machines.edit', compact('machine'));
 }
 
     }
@@ -90,5 +91,33 @@ class MachineController extends Controller
 
     return redirect()->route('machines.index')->with('success', 'Maquinaria eliminada.');
 }
-    
+public function actives()
+{
+    $activeas = Assignment::with(['machine', 'work'])
+                ->whereNotNull('end_date')
+                ->get();
+
+    return view('machines.index', compact('activeas'));
+}
+public function editLimit($id)
+{
+    $machine = Machine::findOrFail($id);
+    return view('machines.edit_limit', compact('machine'));
+}
+
+public function updateLimit(Request $request, $id)
+{
+    $request->validate([
+        'limit_km_maintenance' => 'required|integer|min:1',
+    ]);
+
+    $machine = Machine::findOrFail($id);
+    $machine->limit_km_maintenance = $request->limit_km_maintenance;
+    $machine->save();
+
+    return redirect()->route('machines.index')->with('success', 'Límite actualizado');
+}
+
+
+
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\MaintenanceController;
 use App\Models\Work;
 use Illuminate\Queue\Worker;
+use App\Models\Machine;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +34,10 @@ Route::delete('/maquinarias/{id}', [MachineController::class, 'destroy'])->name(
 Route::get('/maquina/{id}/historial', [AssignmentController::class, 'history'])->name('machines.history');
 Route::get('/maquinas-activas', [AssignmentController::class, 'actives'])->name('assignments.actives');
 Route::get('/maquinas', [AssignmentController::class, 'listMachines'])->name('machines.index');
+Route::get('/machines/{id}/limit', [MachineController::class, 'editLimit'])->name('machines.editLimit');
+Route::post('/machines/{id}/limit', [MachineController::class, 'updateLimit'])->name('machines.updateLimit');
+
+
 
 
 
@@ -42,6 +48,8 @@ Route::get('/works/{id}/editar', [WorkController::class, 'edit'])->name('works.e
 Route::put('/works/{id}', [WorkController::class, 'update'])->name('works.update');
 Route::delete('/works/{id}', [WorkController::class, 'destroy'])->name('works.destroy');
 Route::get('/works', [WorkController::class, 'index'])->name('works.index');
+
+
 
 Route::get('/saveassignment', [AssignmentController::class, 'create'])->name('assignments.create');
 Route::post('/save-assignment', [AssignmentController::class, 'store'])->name('assignments.store');

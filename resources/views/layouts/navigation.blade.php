@@ -68,14 +68,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8l5 5 5-5" />
                 </svg>
             </button>
+            
         </x-slot>
 
         <x-slot name="content">
+             <x-dropdown-link :href="route('works.create')" :active="request()->routeIs('works.create')">
+                Crear Obras
+            </x-dropdown-link>
             <x-dropdown-link :href="route('works.index')" :active="request()->routeIs('works.index')">
                 Lista de Obras
             </x-dropdown-link>
+            
            
         </x-slot>
+        
     </x-dropdown>
 
 </div>

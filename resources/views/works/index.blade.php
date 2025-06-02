@@ -33,7 +33,7 @@
                                         </a>
 
                                         <form action="{{ route('works.destroy', $work->id) }}" method="POST"
-                                              onsubmit="return confirm('¿Estás seguro de eliminar esta máquina?')">
+                                              onsubmit="return confirm('¿Estás seguro de eliminar esta obra?')">
                                             @csrf
                                             @method('DELETE')
                                             <x-danger-button>Eliminar</x-danger-button>

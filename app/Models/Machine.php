@@ -14,7 +14,9 @@ class Machine extends Model
         'id',
         'serial_number',
         'type_id',
-        'model'
+        'model',
+        'kilometers_present',
+        'limit_km_maintenance'
 
     ];
        public function machineType()

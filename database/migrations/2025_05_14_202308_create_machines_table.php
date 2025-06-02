@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('serial_number')->unique();
             $table->foreignId('type_id')->constrained('machine__types')->onDelete('cascade');
             $table->string('model');
+            $table->integer('kilometers_present')->nullable(); // 🆕 Campo necesario
+            $table->integer('limit_km_maintenance')->nullable();
             $table->timestamps();
         });
     }

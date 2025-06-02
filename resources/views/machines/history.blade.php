@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if ($historial->isEmpty())
+                    @if ($historys->isEmpty())
                         <p>No hay historial para esta máquina.</p>
                     @else
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -24,14 +24,14 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                @foreach ($historial as $item)
+                                @foreach ($historys as $history)
                                     <tr>
-                                        <td class="px-6 py-4">{{ $item->work->name }}</td>
-                                        <td class="px-6 py-4">{{ $item->work->province->name }}</td>
-                                        <td class="px-6 py-4">{{ $item->start_date }}</td>
-                                        <td class="px-6 py-4">{{ $item->end_date ?? 'ACTIVA' }}</td>
-                                        <td class="px-6 py-4">{{ $item->kilometers ?? '-' }}</td>
-                                        <td class="px-6 py-4">{{ $item->end_reason ?? '-' }}</td>
+                                        <td class="px-6 py-4">{{ $history->work->name }}</td>
+                                        <td class="px-6 py-4">{{ $history->work->province->name }}</td>
+                                        <td class="px-6 py-4">{{ $history->start_date }}</td>
+                                        <td class="px-6 py-4">{{ $history->end_date ?? 'ACTIVA' }}</td>
+                                        <td class="px-6 py-4">{{ $history->kilometers ?? '-' }}</td>
+                                        <td class="px-6 py-4">{{ $history->end_reason ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

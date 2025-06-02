@@ -22,7 +22,7 @@ class MaintenanceController extends Controller
    public function create($machine_id)
     {
         $machine = Machine::findOrFail($machine_id);
-        return view('maintenances_create', compact('machine'));
+        return view('maintenances.create', compact('machine'));
     }
     /**
      * Store a newly created resource in storage.
@@ -48,7 +48,7 @@ class MaintenanceController extends Controller
     public function show($machine_id)
     {
         $machine = Machine::with('maintenances')->findOrFail($machine_id);
-        return view('maintenances_show', compact('machine'));
+        return view('maintenances.show', compact('machine'));
     }
     /**
      * Show the form for editing the specified resource.

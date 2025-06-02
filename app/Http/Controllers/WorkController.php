@@ -14,7 +14,7 @@ class WorkController extends Controller
     public function index()
     {
         $works = Work::all();
-        return view('works_index', compact('works'));
+        return view('works.index', compact('works'));
     }
 
     /**
@@ -24,7 +24,7 @@ class WorkController extends Controller
     {
         {
     $provinces = Province::all();
-    return view('savework', compact('provinces'));
+    return view('works.save', compact('provinces'));
 }
     }
 
@@ -43,7 +43,7 @@ class WorkController extends Controller
         'end_date'=>$request->end_date
         
     ]);
-        return redirect()->back()->with('success', 'Máquina registrada exitosamente.');
+        return redirect()->back()->with('success', 'Obra registrada exitosamente.');
 
     }
 
@@ -61,7 +61,7 @@ class WorkController extends Controller
     public function edit($id)
     {
          $work = Work::findOrFail($id);
-    return view('works_edit', compact('work'));
+    return view('works.edit', compact('work'));
     }
 
     /**
@@ -72,7 +72,7 @@ class WorkController extends Controller
         $request->validate([
         'name' => 'required|string|max:255',
         'address' => 'required|string|max:255',
-        'province_id' => 'required|exists:province_id,id',
+        'province_id' => 'required|exists:provinces,id',
         ]);
             $work= Work::findOrFail($id);
             $work->update($request->all());
