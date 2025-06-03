@@ -120,6 +120,17 @@ if ($request->end_date && $request->kilometers) {
     $assignment= Assignment::findOrFail($id);
     $assignment->update($request->all());
 
+   // ✅ Agregamos lógica para actualizar los kilómetros de la máquina
+    if ($request->filled('kilometers')) {
+        $machine = $assignment->machine;
+
+        // Solo actualiza si es mayor (por seguridad)
+        $machine->kilometers_present = ($machine->kilometers_present ?? 0) + $request->kilometers;
+        $machine->save();
+    }
+
+    
+
     return redirect()->route('assignments.index')->with('success', 'Asignacion actualizada.');
 }
     /**

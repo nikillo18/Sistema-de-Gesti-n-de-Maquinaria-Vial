@@ -10,7 +10,6 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
-                    <!-- ✅ Scroll horizontal si la tabla es muy ancha -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm uppercase">
@@ -65,8 +64,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div> <!-- end overflow-x-auto -->
-
+                    </div> 
                 </div>
             </div>
         </div>
