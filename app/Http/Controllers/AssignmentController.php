@@ -110,9 +110,9 @@ if ($request->end_date && $request->kilometers) {
  {
     $request->validate([
         'machine_id' => 'required|integer|exists:machines,id',
-        'work_id' => 'required|integer|exits:works,id',
+        'work_id' => 'required|integer|exists:works,id',
         'start_date' => 'required','date',
-        'end_date' => 'required|date|before_or_equal:today',
+        'end_date' => 'required|date|after_or_equal:start_date',
         'end_reason' => 'required|string|max:255',
         'kilometers' => 'required|integer|min:0',
     ]);

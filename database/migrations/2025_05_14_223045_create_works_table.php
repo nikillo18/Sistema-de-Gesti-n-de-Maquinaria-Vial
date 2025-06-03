@@ -18,6 +18,8 @@ return new class extends Migration
         $table->foreignId('province_id')->constrained('provinces')->onDelete('cascade'); 
         $table->date('start_date');
         $table->date('end_date');
+       
+
         $table->timestamps();
         });
     }

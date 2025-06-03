@@ -35,6 +35,9 @@
             <x-dropdown-link :href="route('machines.index')" :active="request()->routeIs('machines.index')">
                Lista de Maquinas
             </x-dropdown-link>
+            <x-dropdown-link :href="route('machines.location')" :active="request()->routeIs('machines.location')">
+               Ubicacion de maquinas
+            </x-dropdown-link>
         </x-slot>
     </x-dropdown>
 

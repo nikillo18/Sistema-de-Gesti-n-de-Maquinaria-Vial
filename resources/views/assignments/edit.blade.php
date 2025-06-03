@@ -8,7 +8,6 @@
             @csrf
             @method('PUT')
 
-            {{-- Selección de máquina --}}
             <div class="mb-4">
                 <x-input-label for="machine_id" value="Máquina" />
                 <select name="machine_id" id="machine_id" class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-900 dark:text-white">
@@ -21,7 +20,6 @@
                 <x-input-error :messages="$errors->get('machine_id')" class="mt-2" />
             </div>
 
-            {{-- Selección de obra --}}
             <div class="mb-4">
                 <x-input-label for="work_id" value="Obra" />
                 <select name="work_id" id="work_id" class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-900 dark:text-white">
@@ -34,7 +32,6 @@
                 <x-input-error :messages="$errors->get('work_id')" class="mt-2" />
             </div>
 
-            {{-- Fecha de inicio --}}
             <div class="mb-4">
                 <x-input-label for="start_date" value="Fecha de inicio" />
                 <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full"
@@ -42,7 +39,6 @@
                 <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
             </div>
 
-            {{-- Fecha de fin --}}
             <div class="mb-4">
                 <x-input-label for="end_date" value="Fecha de fin" />
                 <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full"
@@ -50,12 +46,18 @@
                 <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
             </div>
 
-            {{-- Razón de la asignación --}}
             <div class="mb-4">
-                <x-input-label for="reason" value="Razón" />
-                <x-text-input id="reason" name="reason" type="text" class="mt-1 block w-full"
-                    value="{{ old('reason', $assignment->reason) }}" required />
+                <x-input-label for="end_reason" value="Razón" />
+                <x-text-input id="end_reason" name="end_reason" type="text" class="mt-1 block w-full"
+                    value="{{ old('end_reason', $assignment->end_reason) }}" required />
                 <x-input-error :messages="$errors->get('reason')" class="mt-2" />
+            </div>
+
+            <div class="mb-4">
+                <x-input-label for="kilometers" value="kilometros" />
+                <x-text-input id="kilometers" name="kilometers" type="number" class="mt-1 block w-full"
+                    value="{{ old('kilometers', $assignment->kilometers) }}" required />
+                <x-input-error :messages="$errors->get('kilometers')" class="mt-2" />
             </div>
 
             <div class="mt-6">

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->string('description');
-            $table->string('kilometers_maintainance');
+            $table->integer('kilometers_maintainance');
             $table->foreignId('machine_id')->constrained('machines')->onDelete('cascade');
             $table->timestamps();
         });

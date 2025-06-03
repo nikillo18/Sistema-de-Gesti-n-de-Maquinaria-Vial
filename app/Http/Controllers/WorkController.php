@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use App\Models\Province;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+
 
 class WorkController extends Controller
 {
@@ -33,6 +36,13 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
+          $request->validate([
+        'address' => 'required|string|max:255',
+        'name' => 'required|string|max:100',
+        'province_id' => 'required|exists:provinces,id',
+        'start_date' => 'required|date|',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
+    ]);
         
     //dd($request->all());
     Work::create([
@@ -91,4 +101,7 @@ class WorkController extends Controller
         return redirect()->route('works.index')->with('success', 'Obra Eliminada.');
 
     }
+
+
+
 }

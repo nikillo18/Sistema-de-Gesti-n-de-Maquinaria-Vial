@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('machine_id')->constrained('machines')->onDelete('cascade');
             $table->foreignId('work_id')->constrained('works')->onDelete('cascade');
             $table->date('start_date');
-            $table->date('end_date');
-            $table->string('end_reason');
-            $table->integer('kilometers');
+            $table->date('end_date')->nullable();
+            $table->string('end_reason')->nullable();
+            $table->integer('kilometers')->nullable();
   
             $table->timestamps();
         });

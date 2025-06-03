@@ -42,37 +42,48 @@ cd [/ruta/a/mi/proyecto/app/]
 ```bash
  env.example 
 ```
-4. Instale todas las dependencias del proyecto:
+4. Copiar y modificar en el archivo .env 
+```bash
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=vf0374018@gmail.com
+MAIL_PASSWORD=svxtlkifppipgnem
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=Sistemavial@gmail.com
+MAIL_FROM_NAME="${Sistema Vial}"
+```
+5. Instale todas las dependencias del proyecto:
 ```bash
 composer install
 ```
-5. Configure la clave de la aplicación:
+6. Configure la clave de la aplicación:
 ``` bash
 php artisan key:generate --ansi
 ```
-6. Instale las dependencias 
+7. Instale las dependencias 
 ```bash
 npm install
 ```
-7. Ejecute las migraciones para configurar la base de datos:
+8. Ejecute las migraciones para configurar la base de datos:
 ```bash
-php artisan migrate --seed
+php artisan migrate 
 ```
-8.  Ejecutar los seeders
+9.  Ejecutar los seeders
 ```bash
     php artisan  db:seed 
 ```
-9. Ejecute el gestor de paquetes 
+10. Ejecute el gestor de paquetes 
 
 ```bash
 npm run dev
 ```
-10. Inicie el servidor local:
+11. Inicie el servidor local:
 
 ```bash
 php artisan serve
 ```
-11. Visite la aplicación en el navegador:
+12. Visite la aplicación en el navegador:
 ```bash
 http://127.0.0.1:8000
 ```

@@ -31,7 +31,7 @@ class MaintenanceController extends Controller
     {
         $request->validate([
             'machine_id' => 'required|exists:machines,id',
-            'date' => 'required|date|before_or_equal:today',
+            'date' => 'required|date|',
             'description' => 'required|string|max:255',
             'kilometers_maintainance' => 'required|integer|min:0',
         ]);

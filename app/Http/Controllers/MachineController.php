@@ -117,7 +117,14 @@ public function updateLimit(Request $request, $id)
 
     return redirect()->route('machines.index')->with('success', 'Límite actualizado');
 }
+public function location()
+{
+    $maquinas = Machine::with(['assignment' => function ($q) {
+        $q->whereNull('end_date')->with(['work.province']);
+    }])->get();
 
+    return view('machines.location', compact('maquinas'));
+}
 
 
 }

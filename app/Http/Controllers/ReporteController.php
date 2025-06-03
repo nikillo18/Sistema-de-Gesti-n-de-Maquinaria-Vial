@@ -7,6 +7,7 @@ use App\Models\Work;
 use App\Models\Province;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Machine;
 
 
 class ReporteController extends Controller
@@ -37,4 +38,7 @@ public function pdf($id)
     $pdf = Pdf::loadView('reports.pdf', compact('provincia', 'obras'));
     return $pdf->download("reporte_{$provincia->name}.pdf");
 }
+
+
+
 }

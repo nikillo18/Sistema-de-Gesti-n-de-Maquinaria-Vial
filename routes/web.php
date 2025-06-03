@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/maquinas', [AssignmentController::class, 'listMachines'])->name('machines.index');
     Route::get('/machines/{id}/limit', [MachineController::class, 'editLimit'])->name('machines.editLimit');
     Route::post('/machines/{id}/limit', [MachineController::class, 'updateLimit'])->name('machines.updateLimit');
+    Route::get('/location', [MachineController::class, 'location'])->name('machines.location');
+
 
     Route::get('/savework', [WorkController::class, 'create'])->name('works.create');
     Route::post('/save-work', [WorkController::class, 'store'])->name('works.store');
@@ -39,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/works/{id}', [WorkController::class, 'update'])->name('works.update');
     Route::delete('/works/{id}', [WorkController::class, 'destroy'])->name('works.destroy');
     Route::get('/works', [WorkController::class, 'index'])->name('works.index');
+
+
 
     Route::get('/reports/provinces', [ReporteController::class, 'index'])->name('reports.index');
     Route::get('/reports/provinces/{id}', [ReporteController::class, 'show'])->name('reports.provincia');

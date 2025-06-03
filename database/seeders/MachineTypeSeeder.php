@@ -17,13 +17,18 @@ class MachineTypeSeeder extends Seeder
     {
         {
          DB::table('machine__types')->insert([
-        ['name' => 'XCMG'],
-        ['name' => 'Cummins'],
-        ['name' => 'Caterpillar'],
-        ['name'=>  'Komatsu'],
-        ['name'=>  'John Deere'],
-        ['name'=>  'Sany']
-        
+        ['name' => 'Motoniveladora'],
+        ['name' => 'Retroexcavadora'],
+        ['name' => 'Excavadora hidráulica'],
+        ['name'=>  'Pala cargadora'],
+        ['name'=>  'Bulldozer'],
+        ['name'=>  'Camión volcador '],
+        ['name'=>  'Camión regador '],
+        ['name'=>  'Fresadora de asfalto'],
+        ['name'=>  'Terminadora de asfalto'],
+        ['name'=>  'Martillo hidráulico'],
+        ['name'=>  'Camión hormigonero'],
+        ['name'=>  'Planta de asfalto'],
     ]);
     }
     }
