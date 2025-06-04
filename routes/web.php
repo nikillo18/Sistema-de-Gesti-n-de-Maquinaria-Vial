@@ -7,6 +7,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\MachineTypeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/machines/{id}/limit', [MachineController::class, 'editLimit'])->name('machines.editLimit');
     Route::post('/machines/{id}/limit', [MachineController::class, 'updateLimit'])->name('machines.updateLimit');
     Route::get('/location', [MachineController::class, 'location'])->name('machines.location');
+    Route::get('/create-machineType', function () {
+    return view('machines.Type'); })->name('machinetype.create');
+    Route::post('/save-machineType', [MachineTypeController::class, 'store'])->name('machinetype.store');
+
+ 
+
 
 
     Route::get('/savework', [WorkController::class, 'create'])->name('works.create');

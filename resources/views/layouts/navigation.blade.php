@@ -38,6 +38,9 @@
             <x-dropdown-link :href="route('machines.location')" :active="request()->routeIs('machines.location')">
                Ubicacion de maquinas
             </x-dropdown-link>
+            <x-dropdown-link :href="route('machinetype.create')" :active="request()->routeIs('machinetype.create')">
+               Crear tipo de maquina
+            </x-dropdown-link>
         </x-slot>
     </x-dropdown>
 

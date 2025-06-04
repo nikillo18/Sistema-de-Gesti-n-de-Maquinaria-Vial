@@ -28,7 +28,11 @@ class MachineTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            Machine_Type::create([
+        'name' => $request->name,
+    ]);
+
+    return redirect()->back()->with('success', 'Tipo Máquina registrada exitosamente.');
     }
 
     /**
