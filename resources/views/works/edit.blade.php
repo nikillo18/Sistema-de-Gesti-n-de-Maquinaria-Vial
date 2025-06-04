@@ -20,6 +20,19 @@
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
             </div>
 
+              <div class="mb-4">
+                <x-input-label for="start_date" value="Fecha inicio" />
+                <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" value="{{ old('start_date', $work->start_date) }}" required />
+                <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
+            </div>
+
+            <div class="mb-4">
+                <x-input-label for="end_date" value="Fecha fin" />
+                <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full" value="{{ old('end_date', $work->end_date) }}" required />
+                <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
+            </div>
+
+
             <div class="mb-4">
                 <x-input-label for="province_id" value="Pronvincia" />
                 <select name="province_id" id="province_id" class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-900 dark:text-white">

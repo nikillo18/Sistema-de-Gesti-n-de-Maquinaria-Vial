@@ -9,26 +9,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-
-                    {{-- Éxito --}}
-                    @if(session('success'))
-                        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-                    {{-- Errores --}}
-                    @if($errors->any())
-                        <div class="mb-4 text-sm text-red-600 dark:text-red-400">
-                            <ul class="list-disc pl-5 space-y-1">
-                                @foreach($errors->all() as $e)
-                                    <li>{{ $e }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form action="{{ route('assignments.finalize') }}" method="POST" class="space-y-6">
+                     <form action="{{ route('assignments.finalize') }}" method="POST" class="space-y-6">
                         @csrf
 
                         <div>

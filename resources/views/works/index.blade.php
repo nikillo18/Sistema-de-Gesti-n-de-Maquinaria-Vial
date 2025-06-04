@@ -16,6 +16,8 @@
                                 <th class="px-6 py-3 text-left">Nombre de la obra</th>
                                 <th class="px-6 py-3 text-left">Direccion</th>
                                 <th class="px-6 py-3 text-left">Provincia</th>
+                                <th class="px-6 py-3 text-left">Fecha de inicio</th>
+                                <th class="px-6 py-3 text-left">Fecha de fin</th>
                                 <th class="px-6 py-3 text-left">Acciones</th>
                             </tr>
                         </thead>
@@ -25,6 +27,10 @@
                                     <td class="px-6 py-4">{{ $work->name }}</td>
                                     <td class="px-6 py-4">{{ $work->address }}</td>
                                     <td class="px-6 py-4">{{ $work->province->name ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $work->start_date }}</td>
+                                    <td class="px-6 py-4">{{ $work->end_date }}</td>
+
+
                                        
                                     </td>
                                     <td class="px-6 py-4 flex space-x-2">

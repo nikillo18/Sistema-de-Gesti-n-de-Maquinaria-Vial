@@ -72,10 +72,11 @@ class AssignmentController extends Controller
     'kilometers' => $request->kilometers,
 ]);
 
-if ($request->end_date && $request->kilometers) {
-        $machine = $asignacion->machine;
-        $machine->kilometers_present += $request->kilometers;
-        $machine->save();
+if ($request->kilometers !== null) {
+    $machine = $asignacion->machine;
+    $machine->kilometers_present += $request->kilometers;
+    $machine->save();
+
 
         // ✅ Si se superó el límite, enviamos el correo
        if ($machine->kilometers_present > $machine->limit_km_maintenance) {

@@ -83,6 +83,8 @@ class WorkController extends Controller
         'name' => 'required|string|max:255',
         'address' => 'required|string|max:255',
         'province_id' => 'required|exists:provinces,id',
+        'start_date' => 'required|date|',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);
             $work= Work::findOrFail($id);
             $work->update($request->all());
